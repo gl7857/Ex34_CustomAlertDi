@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="Type:" />
+
+        <EditText
+            android:id="@+id/eTtype"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:hint="1 for arith, 0 for geo"
+            android:inputType="numberSigned|numberDecimal" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="12dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="First Term:" />
+
+        <EditText
+            android:id="@+id/eTfirstTerm"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter the first term"
+            android:inputType="numberSigned|numberDecimal" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="12dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="diff Or Ratio:" />
+
+        <EditText
+            android:id="@+id/eTdiff_ratio"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter diff or ratio"
+            android:inputType="numberSigned|numberDecimal" />
+    </LinearLayout>
+
+</LinearLayout>
