@@ -19,7 +19,7 @@
             android:id="@+id/eTtype"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:hint="1 for arith, 0 for geo"
+            android:hint="0 for arith, 1 for geo"
             android:inputType="numberSigned|numberDecimal" />
     </LinearLayout>
 
