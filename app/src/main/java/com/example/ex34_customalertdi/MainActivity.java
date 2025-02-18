@@ -33,12 +33,33 @@ import androidx.appcompat.app.AppCompatActivity;
  * @since 14/02/2025
  */
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+    /**
+     * AlertDialog.Builder used to create various types of dialog boxes in the app.
+     */
     private AlertDialog.Builder adb;
+    /**
+     * Layout for the custom dialog.
+     */
     private LinearLayout mydialog;
+    /**
+     * EditText views to allow the user to input sequence data (first term, difference/ratio).
+     */
     private EditText eTtype, eTfirstTerm, eTdiff_ratio;
+    /**
+     * ListView that will display the generated terms of the sequence.
+     */
     private ListView lVFirstTwenty;
+    /**
+     * TextViews to display the current first term, difference/ratio, sequence type, index, and sum.
+     */
     private TextView tvFirstTerm, difOrMul, qOrd, index, sumOfTerms;
+    /**
+     * Variables to store the first term, common difference (for arithmetic sequences), and common ratio (for geometric sequences).
+     */
     private double firstTerm, difference, multiplier;
+    /**
+     * Array to hold the terms of the sequence for display in the ListView.
+     */
     private String[] terms = new String[20];
 
     @Override
@@ -52,6 +73,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         sumOfTerms = findViewById(R.id.sumOfTerms);
         lVFirstTwenty = findViewById(R.id.listV);
     }
+
+    /**
+     * Converts a numerical term into a readable string format, either as a plain number or in scientific notation.
+     * If the value is too large or too small, it is represented in scientific notation.
+     *
+     * @param term The numerical value to be formatted.
+     * @return A string representation of the formatted number.
+     */
 
     public static String differentView(double term) {
         if (term % 1 == 0 && term < 10000 && term > -10000) {
@@ -83,9 +112,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         return String.format("%.3f * 10^%d", coefficient, exponent);
     }
 
+    /**
+     * Checks whether the given input string is valid.
+     *
+     * @param st The string to be checked.
+     * @return True if the input is invalid; false otherwise.
+     */
+
     public boolean check(String st) {
         return st.equals("+") || st.equals("+.") || st.equals("-") || st.equals("-.") || st.equals(".") || st.isEmpty();
     }
+
+    /**
+     * Displays a dialog for user input, allowing entry of the sequence type, first term,
+     * and either the difference or ratio.
+     *
+     * @param view The view that initiates the dialog.
+     */
 
     public void dataEnter(View view) {
         mydialog = (LinearLayout) getLayoutInflater().inflate(R.layout.my_dialog, null);
@@ -105,6 +148,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         adb.show();
     }
 
+    /**
+     * OnClickListener for handling dialog actions (enter, cancel, reset).
+     */
     DialogInterface.OnClickListener myclick = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
@@ -145,10 +191,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             if (which == DialogInterface.BUTTON_NEUTRAL) {
                 resetData();
             }
-
         }
     };
 
+    /**
+     * Resets all data and clears all fields, including sequence terms, and updates the UI.
+     */
     public void resetData() {
         eTtype.setText("");
         eTfirstTerm.setText("");
@@ -170,6 +218,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Toast.makeText(this, "All data has been reset!", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Processes the selection of a term from the ListView. Updates the displayed index
+     * and computes the cumulative sum up to the selected term.
+     *
+     * @param adapterView The parent view containing the clicked item.
+     * @param view The specific item that was selected.
+     * @param pos The position of the selected item in the list.
+     * @param id The unique identifier of the selected item.
+     */
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
@@ -184,6 +241,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         sumOfTerms.setText(sum);
     }
 
+    /**
+     * Generates the terms for an arithmetic sequence and stores them in the terms array.
+     */
     public void generateArithmeticSeries() {
         for (int i = 0; i < 20; i++) {
             double term = firstTerm + i * difference;
@@ -191,6 +251,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+    /**
+     * Generates the terms for a geometric sequence and stores them in the terms array.
+     */
     public void generateGeometricSeries() {
         for (int i = 0; i < 20; i++) {
             double term = firstTerm * Math.pow(multiplier, i);
@@ -198,10 +261,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+    /**
+     * Calculates the sum of the initial n terms in a arithmetic series.
+     *
+     * @param n The number of terms to sum.
+     * @return The total sum of the first n terms.
+     */
+
     public double sumArithmetic(int n) {
         return n * (2 * firstTerm + (n - 1) * difference) / 2;
     }
 
+    /**
+     * Calculates the sum of the initial n terms in a geometric series.
+     *
+     * @param n The number of terms to sum.
+     * @return The total sum of the first n terms.
+     */
     public double sumGeometric(int n) {
         if (multiplier == 1) {
             return firstTerm * n;
@@ -209,12 +285,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         return firstTerm * (Math.pow(multiplier, n) - 1) / (multiplier - 1);
     }
 
+    /**
+     * Inflates the menu and adds the option for credits.
+     *
+     * @param menu The menu to inflate.
+     * @return True if the menu was successfully inflated.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.creditsmenu, menu);
         return true;
     }
 
+    /**
+     * Handles item selection from the options menu.
+     *
+     * @param item The selected menu item.
+     * @return True if the menu item was successfully handled.
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
