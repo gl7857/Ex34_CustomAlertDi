@@ -64,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
-                    android:text="a1 = " />
+                    android:text="X1 = " />
 
                 <Space
                     android:layout_width="match_parent"
