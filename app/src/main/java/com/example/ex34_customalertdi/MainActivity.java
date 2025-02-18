@@ -18,6 +18,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * MainActivity is the main screen of the app.
+ * It provides five different buttons that each trigger an AlertDialog with different options.
+ *
+ * This activity demonstrates various features such as displaying simple messages,
+ * handling single or multiple selections, and dynamically changing the background color.
+ * It also includes functionality to capture text input and display it using Toast messages.
+ *
+ * Additionally, it contains a menu option to navigate to a credits screen.
+ *
+ * @author Gali Lavi <gl7857@bs.amalnet.k12.il>
+ * @version 1.0
+ * @since 14/02/2025
+ */
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private AlertDialog.Builder adb;
     private LinearLayout mydialog;
